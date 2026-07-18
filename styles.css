@@ -2,6 +2,7 @@
     --primary: #B3E0D1;
     --secondary: rgb(52, 63, 62);
     --background: rgb(34, 38, 38);
+    --gradient: linear-gradient(to right,rgb(52, 63, 62), var(--background));
 }
 
 body {
@@ -80,7 +81,8 @@ input:focus, textarea:focus, select:focus {
 }
 
 .todoDiv:hover{
-    background-image: linear-gradient(to right,rgb(52, 63, 62), var(--background) ) ;
+    background-image: var(--gradient);
+    
 }
 
 .todoDiv p {
@@ -128,16 +130,19 @@ input:focus, textarea:focus, select:focus {
 footer{
     height: 20px;
     width: 100%;
-
-    background-color: var(--primary);
-    opacity: 0.08;
+    position: sticky;
+    bottom: 0pt;
+    left: 0pt;
+    z-index: 99;
+    background-image: var(--gradient);
     display: flex;
     align-items: center;
     justify-content: center;
+    
 }
 
 .footer-stats {
     /* border: 1px solid red; */
-    widtH: 45%;
+    width: 45%;
     height:100%;
 }
