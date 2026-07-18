@@ -118,6 +118,8 @@ src/
 - [ ] Statistics
 - [ ] Productivity Dashboard
 
+PLUS more modules to come before official launch!
+
 ### Version 1.0
 
 - [ ] User accounts
