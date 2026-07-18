@@ -2,15 +2,21 @@
     --primary: #B3E0D1;
     --secondary: rgb(52, 63, 62);
     --background: rgb(34, 38, 38);
+    --gradient: linear-gradient(to right,rgb(52, 63, 62), var(--background) );
+}
+
+html, body {
+    padding: 0;
+    margin: 0;
+    min-height: 100vh;
 }
 
 body {
     color: var(--primary);
     font-family: system-ui, sans-serif;
     background: var(--background);
-    margin: 0;
-    min-height: 100vh;
-    margin: 0;
+    display: flex;
+    flex-direction: column;
 }
 
 .card {
@@ -74,18 +80,19 @@ input:focus, textarea:focus, select:focus {
     justify-content: space-between;
     padding: 0;
     border-radius: 2rem;
-    /* border-bottom: 1px solid #ddd; */
     cursor: pointer;
     transition: background-color 0.5s ease, opacity 0.5s ease, transform 0.5s ease;
 }
 
 .todoDiv:hover{
-    background-image: linear-gradient(to right,rgb(52, 63, 62), var(--background) ) ;
+    background-image: var(--gradient)
+    
 }
 
 .todoDiv p {
     flex: 1;
 }
+
 .strikeOut {
     text-decoration: line-through;
     color: grey;
@@ -97,6 +104,8 @@ input:focus, textarea:focus, select:focus {
 .todo-container {
     display:flex;
     flex-direction: column;
+    min-height: 100vh;
+    z-index: 0;
 }
 
 .fadeOut {
@@ -128,16 +137,21 @@ input:focus, textarea:focus, select:focus {
 footer{
     height: 20px;
     width: 100%;
-
-    background-color: var(--primary);
-    opacity: 0.08;
+    background-image: var(--gradient);
+    /* opacity: 0.08; */
     display: flex;
     align-items: center;
     justify-content: center;
+    z-index: 9;
+    background-attachment: scroll;
+    background-position: 0% 0%;
+    position: fixed;
+    bottom: 0pt;
+    left: 0pt;
 }
 
 .footer-stats {
-    border: 1px solid red;
+    /* border: 1px solid red; */
     widtH: 45%;
     height:100%;
 }
