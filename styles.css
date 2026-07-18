@@ -1,0 +1,143 @@
+:root {
+    --primary: #B3E0D1;
+    --secondary: rgb(52, 63, 62);
+    --background: rgb(34, 38, 38);
+}
+
+body {
+    color: var(--primary);
+    font-family: system-ui, sans-serif;
+    background: var(--background);
+    margin: 0;
+    min-height: 100vh;
+    margin: 0;
+}
+
+.card {
+    background: grey;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 1px3px rgba(0,0,0,0.1);
+}
+
+#btn {
+    all: unset;
+    cursor: pointer;
+    margin-left: 5px;
+
+}
+p {
+    margin: 0;
+    padding: 10px;
+}
+
+h1 {text-align: center;}
+
+.outline {
+    border: solid 1px black;
+}
+
+.main {
+    /* border: solid 1px black; */
+    width: 45%;
+    margin: auto;
+    flex: 1;
+}
+
+.topbar {
+    display: flex;
+    justify-content: space-between;
+}
+
+input {
+    width: 100%;
+    padding: 12px 16px;
+    font-size: small;
+    color: var(--primary);
+    border: none;
+    border-radius: 2rem;
+    background-color: rgb(52, 63, 62);
+    box-sizing: border-box;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+input:focus, textarea:focus, select:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+.todoDiv {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0;
+    border-radius: 2rem;
+    /* border-bottom: 1px solid #ddd; */
+    cursor: pointer;
+    transition: background-color 0.5s ease, opacity 0.5s ease, transform 0.5s ease;
+}
+
+.todoDiv:hover{
+    background-image: linear-gradient(to right,rgb(52, 63, 62), var(--background) ) ;
+}
+
+.todoDiv p {
+    flex: 1;
+}
+.strikeOut {
+    text-decoration: line-through;
+    color: grey;
+    font-style: italic;
+    opacity: .6;
+
+}
+
+.todo-container {
+    display:flex;
+    flex-direction: column;
+}
+
+.fadeOut {
+    opacity: 0;
+    transform: translateX(30px);
+}
+
+.fa-trash {
+    padding: 5px;
+}
+
+.trash {
+    height: 100%;
+}
+
+.bottom {
+    margin-top: auto;
+}
+
+.cal, .trash, .star, .subplus {
+    opacity: 0.1;
+    transition: background-color 0.5s ease, opacity 0.5s ease, transform 0.5s ease;
+}
+
+.cal:hover, .trash:hover, .star:hover, .subplus:hover {
+    opacity: 1;
+}
+
+footer{
+    height: 20px;
+    width: 100%;
+
+    background-color: var(--primary);
+    opacity: 0.08;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.footer-stats {
+    border: 1px solid red;
+    widtH: 45%;
+    height:100%;
+}

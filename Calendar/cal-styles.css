@@ -1,0 +1,135 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    color: white !important;
+}
+
+body {
+    display: flex;
+    background: #edecec;
+    min-height: 100vh;
+    padding: 0 10px;
+    align-items: center;
+    justify-content: center;
+}
+
+.cal-container {
+    background: #484747;
+    width: 320px;
+    border-radius: 10px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+}
+
+.cal-container header {
+    display: flex;
+    align-items: center;
+    padding: 15px 20px 8px;
+    justify-content: space-between;
+}
+
+header .cal-nav {
+    display: flex;
+}
+
+header .cal-nav span {
+    height: 30px;
+    width: 30px;
+    margin: 0 2px;
+    cursor: pointer;
+    text-align: center;
+    line-height: 30px;
+    border-radius: 50%;
+    user-select: none;
+    color: #aeabab;
+    font-size: 1.4rem;
+}
+
+.cal-nav span:last-child {
+    margin-right: -8px;
+}
+
+header .cal-nav span:hover {
+    background: #f2f2f2;
+}
+
+.cal-body {
+    padding: 10px;
+}
+
+.cal-body ul {
+    list-style: none;
+    flex-wrap: wrap;
+    display: flex;
+    text-align: center;
+}
+
+.cal-body .cal-dates {
+    margin-bottom: 10px;
+    width: 100%;
+}
+
+.cal-body li {
+    width: calc(100% / 7);
+    height: 30px;
+    line-height: 30px;
+    font-size: 0.9rem;
+    color: #414141;
+    margin-top: 20px;
+    position: relative;
+    z-index: 1;
+    cursor: pointer;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.cal-body .cal-weekdays li {
+    cursor: default;
+    font-weight: 500;
+    font-size: 0.85rem;
+}
+
+.cal-dates li.inactive {
+    color: #aaa;
+    cursor: default;
+}
+
+.cal-dates li.active {
+    color: #fff;
+}
+
+.cal-dates li.active {
+    color: #fff;
+}
+
+.cal-dates li::before {
+    position: absolute;
+    content: "";
+    z-index: -1;
+    top: 50%;
+    left: 50%;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.cal-dates li.active::before {
+    background: #6964ff;
+}
+
+.cal-dates li:not(.active):not(.highlight):hover::before {
+    background: #858484;
+}
+
+.cal-dates li.highlight {
+    background: transparent !important;
+    border: 2px dotted #38f3b1 !important;
+    border-radius: 50%;
+    position: relative;
+    z-index: 10;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    width: calc(100% / 7);
+}
