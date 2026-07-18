@@ -1,4 +1,3 @@
-# zenote0.2
 # Zenote 0.2
 
 A minimalist productivity application focused on reducing distractions while helping users organize notes, tasks, and goals.
