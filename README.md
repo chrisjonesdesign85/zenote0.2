@@ -1,4 +1,3 @@
-# zenote0.2
 # Zenote 0.2
 
 A minimalist productivity application focused on reducing distractions while helping users organize notes, tasks, and goals.
@@ -118,6 +117,8 @@ src/
 - [ ] Goal Tracking
 - [ ] Statistics
 - [ ] Productivity Dashboard
+
+PLUS more modules to come before official launch!
 
 ### Version 1.0
 
