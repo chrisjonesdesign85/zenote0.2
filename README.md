@@ -165,11 +165,24 @@ No build tools or dependencies are required.
 As Zenote grows, planned technologies include:
 
 - TypeScript
-- React
+- React (may change)
 - Electron
 - Node.js
 - PostgreSQL
 - AI integrations
+
+---
+
+## Dev Log
+
+### v0.2
+
+- Refactored todo rendering into reusable functions
+- Implemented separation of Concerns
+- Replaced string-based todos with an object-based data model
+- Added persistent completion state
+- Improved localStorage architecture
+- Improved rendering pipeline
 
 ---
 
