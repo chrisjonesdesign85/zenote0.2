@@ -2,7 +2,7 @@
 
 const input = document.getElementById("input");
 const btn = document.getElementById("btn");
-const todoContainer = document.querySelector('.todo-container')
+const todoContainer = document.querySelector('.todo-container');
 
 let todos = JSON.parse(localStorage.getItem("theTodos")) || [];
 
@@ -37,7 +37,7 @@ const deleteTodo = (id) => {
     todos = todos.filter(todo => todo.id !== id);
 };
 
-// const toggleCOmplete = (todo) = () => {
+// const toggleComplete = (todo) = () => {
 
 // };
 
@@ -47,55 +47,69 @@ const deleteTodo = (id) => {
 
 
 
-
-
-
 const createTodoElement = (todo) => {
     const todoItem = document.createElement('p')
     todoItem.textContent = todo.text;
+    // todoItem.classList.add("makeEditable(this)", "onblur="disableEdit(this)");
 
     if (todo.completed) {
         todoItem.classList.add("strikeOut");
     }
-        
+    
     const newDiv = document.createElement('div');
+    const cal = document.createElement('span');
+    const star = document.createElement('span');
+    const pencil = document.createElement('span');
+    const trash = document.createElement('span');
+    const subAddBtn = document.createElement('span');
+
+    
+    cal.innerHTML = '<i class="fa-solid fa-calendar"></i>';
+    star.innerHTML = '<i class="fa-regular fa-star"></i>'
+    pencil.innerHTML = '<i class="fa-solid fa-pencil"></i>'
+    trash.innerHTML = '<i class="fa-solid fa-trash"></i>'
+    subAddBtn.innerHTML = '<i class="fa-solid fa-plus">'
+    
+
     newDiv.className = 'todoDiv';
-
-    const cal = document.createElement('span')
-    cal.innerHTML = `<i class="fa-solid fa-calendar"></i>`
     cal.className = 'cal'
-
-    const star = document.createElement('span')
-    star.innerHTML='<i class="fa-regular fa-star"></i>'
-    star.className='star'
-    const starIcon = star.querySelector('i')
-
-    const trash = document.createElement('span')
-    trash.innerHTML='<i class="fa-solid fa-trash"></i>'
-    trash.className = 'trash';
-
-    const subAddBtn = document.createElement('span')
-    subAddBtn.innerHTML='<i class="fa-solid fa-plus">'
+    pencil.className = 'edit-pencil'
+    star.className='star', 'fa-regular';
     subAddBtn.className = "subplus"
-        
-    // Event Listeners
-    todoItem.addEventListener('click', () => {
+    trash.className = 'trash';    
+
+    const starIcon = star.querySelector('i');
+
+    // strike out todo item
+    const toggleCompleted = () => {
+        console.log('click');
+           
         todo.completed = !todo.completed;
-        saveTodos();
-        renderTodos();
-        // todoItem.classList.toggle('strikeOut')
-        todoItem.draggable = true // future
+                
+        todoItem.classList.toggle('strikeOut');
         let dateCompleted = Date.now() // future
         const dateObject = new Date(dateCompleted) // future
-        if (todoItem.classList.contains('strikeOut')) {
-            console.log(dateObject.toISOString())
-        }
-    });
+            if (todoItem.classList.contains('strikeOut')) {
+                console.log(dateObject.toISOString())
+            };
+        saveTodos();
+        renderTodos();
+    } 
 
-    star.addEventListener('click', () => {
-            starIcon.classList.toggle('fa-regular');
-            starIcon.classList.toggle('fa-solid');
-    });
+        // edit todo item
+    const editTodo = () => {
+        todoItem.contentEditable = true;
+        todoItem.focus();
+        // todoItem.select();
+    }
+    
+    // strike out - evenetListener
+    todoItem.addEventListener('click', toggleCompleted);
+    pencil.addEventListener("click", editTodo);
+    trash.addEventListener("click", deleteTodo);
+    // star.addEventListener("click", toggleStar);
+    // cal.addEventListener("click", openCalendar);
+    
 
     // removing items
     trash.addEventListener('click', (e) => {
@@ -122,11 +136,16 @@ const createTodoElement = (todo) => {
     return newDiv
 } //end createElement
 
+
+
+
 const renderTodo = (todo) => {
     const element = createTodoElement(todo)
     todoContainer.appendChild(element)
     
 }
+
+
 
 const createTodo = (text) => ({
         id: Date.now(),
