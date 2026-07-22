@@ -47,6 +47,7 @@ h1 {text-align: center;}
 .topbar {
     display: flex;
     justify-content: space-between;
+    margin: 10px;
 }
 
 input {
@@ -118,12 +119,12 @@ input:focus, textarea:focus, select:focus {
     margin-top: auto;
 }
 
-.cal, .trash, .star, .subplus {
+.cal, .pencil, .trash, .star, .subplus {
     opacity: 0.1;
     transition: background-color 0.5s ease, opacity 0.5s ease, transform 0.5s ease;
 }
 
-.cal:hover, .trash:hover, .star:hover, .subplus:hover {
+.cal:hover, .pencil:hover, .trash:hover, .star:hover, .subplus:hover {
     opacity: 1;
 }
 

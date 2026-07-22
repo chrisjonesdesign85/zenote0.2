@@ -37,16 +37,6 @@ const deleteTodo = (id) => {
     todos = todos.filter(todo => todo.id !== id);
 };
 
-// const toggleComplete = (todo) = () => {
-
-// };
-
-// const toggleStar = () => {
-
-// };
-
-
-
 const createTodoElement = (todo) => {
     const todoItem = document.createElement('p')
     todoItem.textContent = todo.text;
@@ -56,37 +46,45 @@ const createTodoElement = (todo) => {
         todoItem.classList.add("strikeOut");
     }
     
+    const createIcon = (styleClass, iconClass, ClassName) => {
+        let span = document.createElement('span');
+        span.innerHTML = `<i class= "${styleClass} ${iconClass} ${ClassName} "></i>`;
+        return span;
+    }
+
     const newDiv = document.createElement('div');
-    const cal = document.createElement('span');
-    const star = document.createElement('span');
-    const pencil = document.createElement('span');
-    const trash = document.createElement('span');
-    const subAddBtn = document.createElement('span');
-
-    
-    cal.innerHTML = '<i class="fa-solid fa-calendar"></i>';
-    star.innerHTML = '<i class="fa-regular fa-star"></i>'
-    pencil.innerHTML = '<i class="fa-solid fa-pencil"></i>'
-    trash.innerHTML = '<i class="fa-solid fa-trash"></i>'
-    subAddBtn.innerHTML = '<i class="fa-solid fa-plus">'
-    
-
     newDiv.className = 'todoDiv';
-    cal.className = 'cal'
-    pencil.className = 'edit-pencil'
-    star.className='star', 'fa-regular';
-    subAddBtn.className = "subplus"
-    trash.className = 'trash';    
+    
+    const cal = createIcon("fa-solid", "fa-calendar", "cal")
+    const star = createIcon("fa-regular", "fa-star", "star")
+    const pencil = createIcon ("fa-solid", "fa-pencil", "pencil")
+    const trash = createIcon("fa-solid", "fa-trash","trash")
+    const subAddBtn = createIcon("fa-solid", "fa-plus", "subplus");
 
-    const starIcon = star.querySelector('i');
+    // const cal = document.createElement('span');
+    // const star = document.createElement('span');
+    // const pencil = document.createElement('span');
+    // const trash = document.createElement('span');
+    // const subAddBtn = document.createElement('span');
+
+    // cal.innerHTML = '<i class="fa-solid fa-calendar"></i>';
+    // star.innerHTML = '<i class="fa-regular fa-star"></i>'
+    // pencil.innerHTML = '<i class="fa-solid fa-pencil"></i>'
+    // trash.innerHTML = '<i class="fa-solid fa-trash"></i>'
+    // subAddBtn.innerHTML = '<i class="fa-solid fa-plus">'
+    
+    // cal.className = 'cal'
+    // pencil.className = 'pencil'
+    // star.className='star', 'fa-regular';
+    // subAddBtn.className = "subplus"
+    // trash.className = 'trash';    
+
+    
 
     // strike out todo item
     const toggleCompleted = () => {
-        console.log('click');
-           
         todo.completed = !todo.completed;
                 
-        todoItem.classList.toggle('strikeOut');
         let dateCompleted = Date.now() // future
         const dateObject = new Date(dateCompleted) // future
             if (todoItem.classList.contains('strikeOut')) {
@@ -102,12 +100,25 @@ const createTodoElement = (todo) => {
         todoItem.focus();
         // todoItem.select();
     }
+
+    const starIcon = star.querySelector('i');
+
+    const toggleStar = () => {
+        todo.starred = !todo.starred;
+        saveTodos();
+        renderTodos();
+            
+    };
+
+     if (todo.starred) {
+        starIcon.classList.add("fa-solid");
+        starIcon.style.opacity=1;
+    }
     
     // strike out - evenetListener
     todoItem.addEventListener('click', toggleCompleted);
     pencil.addEventListener("click", editTodo);
-    trash.addEventListener("click", deleteTodo);
-    // star.addEventListener("click", toggleStar);
+    star.addEventListener("click", toggleStar);
     // cal.addEventListener("click", openCalendar);
     
 
@@ -127,9 +138,10 @@ const createTodoElement = (todo) => {
         
         newDiv.classList.add('fadeOut');
     }); 
-
+    
     newDiv.appendChild(todoItem);
-    newDiv.appendChild(cal)        
+    newDiv.appendChild(pencil);
+    newDiv.appendChild(cal);      
     newDiv.appendChild(star)
     newDiv.appendChild(subAddBtn)
     newDiv.appendChild(trash)
@@ -167,8 +179,7 @@ const addTodo = (text) => {
     focusAndClearInput();
 }
 
-const toggleComplete = (id) => {} 
-
+// button eventListener to add Todo
 btn.addEventListener("click", () => {
     addTodo(getInputValue())
 });
