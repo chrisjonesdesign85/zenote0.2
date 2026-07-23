@@ -82,6 +82,8 @@ const createTodoElement = (todo) => {
 
   // strike out todo item
   const toggleCompleted = () => {
+    if (todoItem.isContentEditable) return;
+
     todo.completed = !todo.completed;
 
     let dateCompleted = Date.now(); // future
@@ -109,15 +111,13 @@ const createTodoElement = (todo) => {
 
     // saveTodos();
     // renderTodos();
-    
   });
 
   todoItem.addEventListener("blur", () => {
     todo.text = todoItem.textContent;
     saveTodos();
     renderTodos();
-  
-  })
+  });
 
   const starIcon = star.querySelector("i");
 
