@@ -29,6 +29,10 @@ const renderTodos = () => {
 };
 
 //update UI helper
+const updateUI = () => {
+  saveTodos();
+  renderTodos();
+};
 
 const saveTodos = () => {
   localStorage.setItem("theTodos", JSON.stringify(todos));
@@ -62,24 +66,6 @@ const createTodoElement = (todo) => {
   const trash = createIcon("fa-solid", "fa-trash", "trash");
   const subAddBtn = createIcon("fa-solid", "fa-plus", "subplus");
 
-  // const cal = document.createElement('span');
-  // const star = document.createElement('span');
-  // const pencil = document.createElement('span');
-  // const trash = document.createElement('span');
-  // const subAddBtn = document.createElement('span');
-
-  // cal.innerHTML = '<i class="fa-solid fa-calendar"></i>';
-  // star.innerHTML = '<i class="fa-regular fa-star"></i>'
-  // pencil.innerHTML = '<i class="fa-solid fa-pencil"></i>'
-  // trash.innerHTML = '<i class="fa-solid fa-trash"></i>'
-  // subAddBtn.innerHTML = '<i class="fa-solid fa-plus">'
-
-  // cal.className = 'cal'
-  // pencil.className = 'pencil'
-  // star.className='star', 'fa-regular';
-  // subAddBtn.className = "subplus"
-  // trash.className = 'trash';
-
   // strike out todo item
   const toggleCompleted = () => {
     if (todoItem.isContentEditable) return;
@@ -91,8 +77,7 @@ const createTodoElement = (todo) => {
     if (todoItem.classList.contains("strikeOut")) {
       console.log(dateObject.toISOString());
     }
-    saveTodos();
-    renderTodos();
+    updateUI();
   };
 
   // edit todo item
@@ -106,31 +91,30 @@ const createTodoElement = (todo) => {
 
     event.preventDefault();
 
-    // todo.text = todoItem.textContent;
     todoItem.contentEditable = false;
-
-    // saveTodos();
-    // renderTodos();
   });
 
   todoItem.addEventListener("blur", () => {
-    todo.text = todoItem.textContent;
-    saveTodos();
-    renderTodos();
+    todo.text = todoItem.textContent.trim();
+    updateUI();
   });
 
   const starIcon = star.querySelector("i");
 
   const toggleStar = () => {
     todo.starred = !todo.starred;
-    saveTodos();
-    renderTodos();
+    updateUI();
   };
 
   if (todo.starred) {
     starIcon.classList.add("fa-solid");
     starIcon.style.opacity = 1;
   }
+
+  // const subPlus = document.getElementsByClassName('.subplus');
+  // subPlus.addEventListener("click", () => {
+  //   console.log("plus click");
+  // });
 
   // strike out - evenetListener
   todoItem.addEventListener("click", toggleCompleted);
@@ -149,8 +133,7 @@ const createTodoElement = (todo) => {
         if (e.propertyName !== "opacity") return;
 
         deleteTodo(todo.id);
-        saveTodos();
-        renderTodos();
+        updateUI();
       },
       { once: true },
     );
@@ -173,7 +156,7 @@ const renderTodo = (todo) => {
 };
 
 const createTodo = (text) => ({
-  id: Date.now(),
+  id: crypto.randomUUID(),
   text,
   completed: false,
   starred: false,
@@ -186,8 +169,7 @@ const addTodo = (text) => {
 
   todos.push(newTodo);
 
-  saveTodos();
-  renderTodos();
+  updateUI();
   focusAndClearInput();
 };
 
@@ -199,7 +181,7 @@ btn.addEventListener("click", () => {
 // send todo by clicking button / pressing the enter key
 input.addEventListener("keyup", (event) => {
   event.preventDefault();
-  if (event.keyCode === 13) {
+  if (event.key === "Enter") {
     btn.click();
   }
 });
