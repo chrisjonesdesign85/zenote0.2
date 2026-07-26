@@ -116,7 +116,7 @@ const createTodoElement = (todo) => {
   //   console.log("plus click");
   // });
 
-  // strike out - evenetListener
+  // strike out -evenetListener
   todoItem.addEventListener("click", toggleCompleted);
   pencil.addEventListener("click", editTodo);
   star.addEventListener("click", toggleStar);
