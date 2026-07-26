@@ -116,6 +116,7 @@ const createTodoElement = (todo) => {
 } // end create Todo Elemnets
 
 
+
 const attachTodoEvents = (todo, elements) => {
     const {
         todoItem,
@@ -177,6 +178,10 @@ const attachTodoEvents = (todo, elements) => {
 
         element.classList.add("fadeOut");
     });
+
+    if (todo.starred) {
+    star.classList.add("active");
+};
 
 };
 

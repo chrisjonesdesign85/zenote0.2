@@ -144,6 +144,14 @@ select:focus {
   opacity: 1;
 }
 
+.star {
+  opacity:.2;
+}
+
+.star.active {
+  opacity: 1;
+}
+
 footer {
   height: 20px;
   width: 100%;
